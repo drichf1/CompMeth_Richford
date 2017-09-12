@@ -13,9 +13,15 @@
 #              ---  x ---  or  - x sqrt(--------- - 4 x [-v1^2 - ---])
 #              l1v1    2   -   2       (l1^2 v1^2       [         l1])
 #
-#            = GM    + 1   ()
-#              ---- or - x ()
-#              l1v1  - 2   ()
+#            = GM    +     ([      GM ]^2)
+#              ---- or sqrt([v1 - ----]  )
+#              l1v1  -     ([     l1v1]  )
+#
+#     Here, the radicand is always positive, and this equation doesn't
+#     distinguish between the additive root and the subtractive root.
+#     From the bound-orbit condition, we know that if v2 < v1 < v_circular
+#     we're at perihelion, and if v1 < v2 < v_circular, at aphelion.
+
 import numpy
 
 def user_input(): # specify l1, v1 of satellite we're interested in
