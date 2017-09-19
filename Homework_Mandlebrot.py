@@ -38,12 +38,12 @@ def get_logarithm_of_2_by_2_array(array, x_steps, y_steps):                    #
 # Run the Program
 if __name__ == "__main__":
 # Let's Calculate the "whole" Mandlebrot set: that christmas-tree-like figure
-    x_min, x_max, x_steps = -2, 0.5, 5000
-    y_min, y_max, y_steps = -1.25, 1.25, 5000
-    iterations = 25
+    # x_min, x_max, x_steps = -2, 0.5, 5000
+    # y_min, y_max, y_steps = -1.25, 1.25, 5000
+    # iterations = 25
     
-    n_iterations = mandlebrot(x_min, x_max, x_steps, y_min, y_max, y_steps, iterations) #array of number of iterations it takes for z=0 to get to z=2
-    log_n_iterations = get_logarithm_of_2_by_2_array(n_iterations, x_steps, y_steps) #log of that array
+    # n_iterations = mandlebrot(x_min, x_max, x_steps, y_min, y_max, y_steps, iterations) #array of number of iterations it takes for z=0 to get to z=2
+    # log_n_iterations = get_logarithm_of_2_by_2_array(n_iterations, x_steps, y_steps) #log of that array
     
 # Zoom - in on a smaller window -- an edge of the figureset
     x_min2, x_max2, x_steps2 = 0.3, 0.4, 5000
@@ -54,9 +54,9 @@ if __name__ == "__main__":
     log_n_iterations_zoom = get_logarithm_of_2_by_2_array(n_iterations_zoom, x_steps2, y_steps2)
 
 #Plotting
-    matplotlib.pyplot.imshow(log_n_iterations)
-    matplotlib.pyplot.hot()
-    matplotlib.pyplot.show()
+    # matplotlib.pyplot.imshow(log_n_iterations)
+    # matplotlib.pyplot.hot()
+    # matplotlib.pyplot.show()
     matplotlib.pyplot.imshow(log_n_iterations_zoom)
-    matplotlib.pyplot.jet()
+    matplotlib.pyplot.hot()
     matplotlib.pyplot.show()
