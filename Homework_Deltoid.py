@@ -9,7 +9,7 @@ def deltoid(angle): # Takes the angle and parametrizes cartesian coordinates
     if ((angle < 0) or (angle > 2*numpy.pi)): # keep angles between [0,2pi]
         angle = angle%(2*numpy.pi) #modulo 2*pi
     x = 2.*numpy.cos(angle) + numpy.cos(2.*angle) #x parametrization
-    y = 2.*numpy.sin(angle) + numpy.sin(2.*angle) #y parametrization
+    y = 2.*numpy.sin(angle) - numpy.sin(2.*angle) #y parametrization
     return numpy.array([x,y]) #returns array of x, y
 
 @jit
