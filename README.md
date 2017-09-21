@@ -10,8 +10,8 @@ Homework 2
 -- Deltoid
 -- Mandlebrot (and 4 associated pictures)
 Homework 3
---
---
+-- Factorial difference (int/float) (and 1 associated picture)
+-- 
 Homework 4
 --
 --
