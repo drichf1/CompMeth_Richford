@@ -79,5 +79,5 @@ if __name__ == "__main__":
 #    print("main calculation  . {:4.2} ms".format(main_end_time-main_start_time))
 #    print("graphs  . . . . . . {:4.2} ms".format(end_time-graph_start_time))
 #    print("Total . . . . . . . {:4.2} ms\n----------------".format(end_time-start_time))
-#    print("To exit, close the graph's pop-up window. The program will end.")
+    print("To exit, close the graph's pop-up window. The program will end.")
     matplotlib.pyplot.show()
