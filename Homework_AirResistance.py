@@ -1,98 +1,99 @@
-# 0. Greeting
-print("This is a program to calculate the motion with air resistance of a cannonball of varying mass.")
-# 1. IMPORT STATEMENTS
-import time
-starttime = time.time()
-import numpy
-import matplotlib.pylab
-end_import_time = time.time()
-# 2. DEFINITIONS
-# 2.1 MISC.
-def distance(x=0.0,y=0.0,z=0.0):
-    return numpy.sqrt(x*x+y*y+z*z)
-def air_friction_coefficient(R,rho,C): # radius of obj, density of fluid, drag constant,
-    return 0.5*numpy.pi*R*R*rho*C
-def airfriction_force(A,v): # constant from drag eqn, velocity of particle
-    return A*v*v
-#2.2 DERIVATIVES
-def horizontal_velocity_derivative(m,A,vy,t):
-    return -(airfriction_force(A,vy)/m)-9.81
-def vertical_velocity_derivative(m,A,vx,t): 
-    return -(airfriction_force(A,vx)/m)
-def horizontal_position_derivative(A, vx, vy,t): #constant from drag eqn, y-dot, x-dot
-    return -A*vx*distance(vx,vy)
-def vertical_position_derivative(A, vx, vy,t): #constant from drag eqn, grav accel, y-dot, x-dot
-    return -9.81 - A*vy*distance(vx,vy)
-end_def_time = time.time()
-# 3. MAIN LOOP
+print("This program is for Homework 5: ODEs.")
+print("-------------------------------------")
+print("This program calculates the trajectory\n \
+of a projectile of varying mass and\n \
+graphs the trajectories and the final\n \
+velocities upon impact.")
+
+import numpy # pi, square root, array, linspace, zeroes, cosine, sine
+import matplotlib.pyplot # plot, show, scatter, subplots
+
+class rk4_solver:
+    def __init__(self,f): #initialization, takes function, f
+        self.f = f #make function an attribute f the class
+        self.initial_conditions = None #initial conditions
+        self.solution = None #solution
+    def solve(self,a,b,N=1000): #only need to call a (lower lim), b (upper lim)
+        #print("RK4 Solver")
+        # set up
+        f = self.f # the function we want to solve
+        r0 = numpy.array(self.initial_conditions,float) #init cond.
+        h = (b-a)/N # interval spacing
+        tpoints = numpy.linspace(a,b,N) #time points
+        solution = numpy.zeros(tpoints.shape + r0.shape,float) #solutions
+        # do the solving
+        r = r0 # initialize things
+        #print("r",r)
+        for i,t in enumerate(tpoints):
+            solution[i]=r
+            k1 = h*f(r,t)
+            #print(h*f(r,t))
+            k2 = h*f(r+0.5*k1,t+0.5*h)
+            k3 = h*f(r+0.5*k2,t+0.5*h)
+            k4 = h*f(r+k3,t+h)
+            r += (k1+2*k2+2*k3+k4)/6
+            #print("RK4 says, 'Hi!'")
+        # more attrtibutes of the class pertinent to the iteration
+        self.h = h # make spacing an attribute of the class
+        self.t = tpoints #make tpoints an attribute, too
+        # record solution
+        self.solution = solution #make the solution an attribute of the class
+
+# I also wanted to try to make things all in a single function, with subfunctions
+def get_trajectory(mass,left): # takes a mass, since the problem asks for a mass range
+    # Phsyical constants/etc.
+    array = numpy.zeros(6)
+    rho = 1.22 # kilograms per cubic meter (density of air)
+    Cd = 0.47 # coeff of drag
+    radius = 0.08 # cm (radius of ball)
+    m = mass # kg (mass of ball) (argument of function)
+    g = 9.81 # m/s^2 accel b/c of gravity
+
+    # Initial Conditoiins & array
+    v0 = 100. # m/s Initial Velocity
+    theta0 = numpy.pi/6 # 30 degrees initial angle
+    x0 = y0 = 0.0 # m, initial position
+    vx0 = v0*numpy.cos(theta0) #initial x velocity
+    vy0 = v0*numpy.sin(theta0) # initial y velocity
+    r0 = [x0,y0,vx0,vy0] #array of initial values
+
+    # Constant for use in differential Equation
+    constant = 0.5*numpy.pi*radius*radius*Cd*rho/mass
+
+    #define function we're checking
+    def drag_diffeq(r,t):
+        x,y,vx,vy = r
+        v = numpy.sqrt(vx*vx+vy*vy)
+        deriv_r = [vx,vy] #derivative of position is velocity (2 eqns)
+        deriv_v = [-constant*vx*v, -constant*vy*v-g] #der iv of velocity (2 eqns)
+        return numpy.array(deriv_r + deriv_v) #joins the arrays together
+
+    # do the program
+    drag = rk4_solver(drag_diffeq) #make a solver object for the drag eqns
+    drag.initial_conditions = r0 #set initial conditions
+    drag.solve(0,10, 100) # solve for the time intervals 0s, 10s; 1000 iterations; omit "self" arg
+    x = drag.solution[:,0]
+    y = drag.solution[:,1]
+    vxend = drag.solution[-1,2]
+    vyend = drag.solution[-1,3]
+    # returns
+    left = matplotlib.pyplot.plot(x[y>0],y[y>0],label=mass)
+    return numpy.sqrt(vxend*vxend+vyend*vyend)
+
 if __name__ == "__main__":
-    # 3.1 Initialize Parameters & Generate Constants
-    R = 0.08 # m
-    rho = 1.22 # kg m^-1
-    C = 0.47
-    A = air_friction_coefficient(R,rho,C)
-    # 3.2 Initialize initial conditions and variables.0
-    x0 = 0.0
-    y0 = 0
-    v0 = 100.0 # m/s
-    vx0 = v0*numpy.cos(numpy.pi/6)
-    vy0 = v0*numpy.sin(numpy.pi/6)
-    mass = numpy.linspace(0.1,10,110)
-    # 3.3 Start RK4 algorithm
-    # 3.3.1 Step Size and Timesteps
-    h = 0.001
-    tpoints = numpy.arange(0,10,h)
-    # 3.3.2 Empty Arrays of Arrays for Answers
-    horizontal_velocity_derivative_steps_vx = []
-    vertical_velocity_derivative_steps_vy = []
-    horizontal_position_derivative_steps_x = []
-    vertical_position_derivative_steps_y = []
-    # 3.3.3 Loop Over Each Value of the Mass
-    for i in range(len(mass)):
-        # 3.3.3.1 Initial Conditions and Append New Empty Array
-        vxout = vx0
-        vyout = vy0
-        horizontal_velocity_derivative_steps_vx.append([])
-        vertical_velocity_derivative_steps_vy.append([])
-        xout = x0
-        yout = y0
-        horizontal_position_derivative_steps_x.append([])
-        vertical_position_derivative_steps_y.append([])
-        # 3.3.3.2 RK4 Run Over Each Timestep
-        for t in tpoints:
-            # 3.3.3.2.1 Record Answer from Last Loop
-            horizontal_velocity_derivative_steps_vx[i].append(vxout)
-            vertical_velocity_derivative_steps_vy[i].append(vyout)
-            horizontal_position_derivative_steps_x[i].append(xout)
-            vertical_position_derivative_steps_y[i].append(yout)
-            # 3.3.3.2.2 RK4 Coefficients for Horizontal Velocity
-            k1vx = h*horizontal_velocity_derivative(mass[i],A,vxout,t)
-            k2vx = h*horizontal_velocity_derivative(mass[i],A,vxout+0.5*k1vx,t+0.5*h)
-            k3vx = h*horizontal_velocity_derivative(mass[i],A,vxout+0.5*k2vx,t+0.5*h)
-            k4vx = h*horizontal_velocity_derivative(mass[i],A,vxout+k3vx,t+h)
-            # 3.3.3.2.3 RK4 Coefficients for Vertical Velocity
-            k1vy = h*vertical_velocity_derivative(mass[i],A,vyout,t)
-            k2vy = h*vertical_velocity_derivative(mass[i],A,vyout+0.5*k1vy,t+0.5*h)
-            k3vy = h*vertical_velocity_derivative(mass[i],A,vyout+0.5*k2vy,t+0.5*h)
-            k4vy = h*vertical_velocity_derivative(mass[i],A,vyout+k3vy,t+h)
-            # 3.3.3.2.4 RK4 Coefficients for Horizontal Position
-            k1x = h*horizontal_position_derivative(A,xout,yout,t)
-            k2x = h*horizontal_position_derivative(A,xout+0.5*k1x,yout,t+0.5*h)
-            k3x = h*horizontal_position_derivative(A,xout+0.5*k2x,yout,t+0.5*h)
-            k4x = h*horizontal_position_derivative(A,xout+k3x,yout,t+h)
-            # 3.3.3.2.5 RK4 Coefficients for Vertical Position
-            k1y = h*vertical_position_derivative(A,xout,yout,t)
-            k2y = h*vertical_position_derivative(A,xout,yout+0.5*k1y,t+0.5*h)
-            k3y = h*vertical_position_derivative(A,xout,yout+0.5*k2y,t+0.5*h)
-            k4y = h*vertical_position_derivative(A,xout,yout+k3y,t+h)
-            # 3.3.3.2.6 Increment the Result Parameters
-            vxout += (k1vx+2*k2vx+2*k3vx+k4vx)/6
-            vyout += (k1vy+2*k2vy+2*k3vy+k4vy)/6
-            xout += (k1x+2*k2x+2*k3x+k4x)/6
-            yout += (k1y+2*k2y+2*k3y+k4y)/6
-    end_main_loop = time.time()
-# 4. Graphing
-    print("To continue to the timing analysis of the program,\nplease close the graphing window.")
-# 5. Timing
-# 6. Ending
-    print("Thank you for using this program! Have a good day. ^-^")
+    mass_range = numpy.linspace(1,10,10)
+    # setting up the graphs
+    f, (left, right) = matplotlib.pyplot.subplots(1, 2)
+    left.set_title("Trajectory")
+    left.set_xlabel("Horizontal Displacement (meters)")
+    left.set_ylabel("Vertical Displacement (meters)")
+    left.legend()
+    right.set_title("Velocity upon Impact")
+    right.set_xlabel("Mass of Projectile (kilograms)")
+    right.set_ylabel("Velocity (meters per second)")
+    # Calculate the RK4 Solution
+    drop_speed_range = [get_trajectory(mass,left) for mass in mass_range]
+    # Finish graphing
+    right = matplotlib.pyplot.scatter(mass_range,drop_speed_range)
+    print("---\nTo finish the program, close the graph window.")
+    matplotlib.pyplot.show()
