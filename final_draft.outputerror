@@ -1,0 +1,223 @@
+/opt/local/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/emcee/ensemble.py:335: RuntimeWarning: invalid value encountered in subtract
+  lnpdiff = (self.dim - 1.) * np.log(zz) + newlnprob - lnprob0
+/opt/local/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/emcee/ensemble.py:336: RuntimeWarning: invalid value encountered in greater
+  accept = (lnpdiff > np.log(self._random.rand(len(lnpdiff))))
+final_draft.py:464: RuntimeWarning: invalid value encountered in true_divide
+  bfrac = bfold / hfold
++--------------------------------+
+| This program is my submission  |
+| for A. Maller's Computational  |
+| Physics class given at the GC  |
+| in Fall 2017.                  |
++--------------------------------+
+| This program takes a Gaussian  |
+| distribution and decomposes it |
+| into two constituent Gaussian  |
+| distributions -- taking the    |
+| invariant electron yield and   |
+| distance-of-closest-approach   |
+| distribution recorded during a |
+| particle collision, removing   |
+| background contributions, and  |
+| extracting the relative        |
+| fraction of charm and bottom   |
+| quarks created.                |
++--------------------------------+
+| 1. Starting stopwatch!
+| 2. Importing packages!
+| 3. Writing definitions!
+|    3.1 unfold()
+|    3.2 run_unfolding()
+| +------------------------------+
+| | 4. Starting unfolding!
+| +------------------------------+
+| | Unfolding Step 0
+| | +--------------------------------+
+| | | 4.0.0 Running Parameters
+| | + - - - - - - - - - - - - - - - -+
+| | | Step Number     : 0
+| | | Bottom Fraction : 0.007
+| | | alpha           : 1.0
+| | | weight of DCA   : 1
+| | | weight of EpT   : 1
+| | | DCA File Name   : fakedata/pp/fakedata-dca.root
+| | | Number of
+| | |   Random Walkers: 750
+| | | Steps of
+| | |   Burn-in       : 400
+| | | Number of Steps : 2000
+| | +------------------------------+
+| | | 4.0.1 Definitions in Unfold():
+| | |        4.0.1.1 eptdata()
+| | |        4.0.1.2: histogram_to_array(histogram, option)
+| | |        4.0.1.3: dcadata(dca_ept_bin, filename)
+| | |        4.0.1.4: dcamatrix(dca_ept_bin)
+| | |        4.0.1.5: eptmatrix()
+| | |        4.0.1.6: genpt(bfrac)
+| | |        4.0.1.7: finite_difference_matrix(ndim)
+| | |        4.0.1.8: ln_gauss(x, mu, inv_cov_mtx)
+| | |        4.0.1.9: ln_poisson(x, mu -- uses scipy.special.gammaln())
+| | |        4.0.1.10: multi_variable_gauss(x, matrix_list_entry, data_list_entry)
+| | |        4.0.1.11: dca_shape(x, matrix_list, data_list)
+| | |        4.0.1.12: reg(x, x_prior, alpha, L)
+| | |        4.0.1.13: lppdf_ept_dca(x, mtxs, data, wt, prior, alpha, lim, reg-L)
+| | | 4.0.2 Global Parameters for use in Unfold()
+| | | 4.0.3 Output Directories
+| | | 4.0.4 Metropolis-Coupled Markov-Chain Monte Carlo
+| | |        4.0.4.1 MCMC initialization
+| | |        4.0.4.2 Initializing 750 34-dimensional random walkers.
+Error messages about invalid value in subtract() and greater().
+| | |        --> Result: Mean Acceptance Fraction = 0.000
+| | | 4.0.5 Refold
+| | |        4.0.5.1 ept_refold()
+Error message about trouble with true-divide.
+| | | 4.0.6 Saving Data
+| |/
+| /
+|/
+| +------------------------------+
+| | Unfolding Step 1
+| | +--------------------------------+
+| | | 4.1.0 Running Parameters
+| | + - - - - - - - - - - - - - - - -+
+| | | Step Number     : 1
+| | | Bottom Fraction : 0.007
+| | | alpha           : 1.0
+| | | weight of DCA   : 1
+| | | weight of EpT   : 1
+| | | DCA File Name   : fakedata/pp/fakedata-dca.root
+| | | Number of
+| | |   Random Walkers: 750
+| | | Steps of
+| | |   Burn-in       : 400
+| | | Number of Steps : 2000
+| | +------------------------------+
+| | | 4.1.1 Definitions in Unfold():
+| | |        4.1.1.1 eptdata()
+| | |        4.1.1.2: histogram_to_array(histogram, option)
+| | |        4.1.1.3: dcadata(dca_ept_bin, filename)
+| | |        4.1.1.4: dcamatrix(dca_ept_bin)
+| | |        4.1.1.5: eptmatrix()
+| | |        4.1.1.6: genpt(bfrac)
+| | |        4.1.1.7: finite_difference_matrix(ndim)
+| | |        4.1.1.8: ln_gauss(x, mu, inv_cov_mtx)
+| | |        4.1.1.9: ln_poisson(x, mu -- uses scipy.special.gammaln())
+| | |        4.1.1.10: multi_variable_gauss(x, matrix_list_entry, data_list_entry)
+| | |        4.1.1.11: dca_shape(x, matrix_list, data_list)
+| | |        4.1.1.12: reg(x, x_prior, alpha, L)
+| | |        4.1.1.13: lppdf_ept_dca(x, mtxs, data, wt, prior, alpha, lim, reg-L)
+| | | 4.1.2 Global Parameters for use in Unfold()
+| | | 4.1.3 Output Directories
+| | | 4.1.4 Metropolis-Coupled Markov-Chain Monte Carlo
+| | |        4.1.4.1 MCMC initialization
+| | |        4.1.4.2 Initializing 750 34-dimensional random walkers.
+| | |        --> Result: Mean Acceptance Fraction = 0.000
+| | | 4.1.5 Refold
+| | |        4.1.5.1 ept_refold()
+| | | 4.1.6 Saving Data
+| |/
+| /
+|/
+| +------------------------------+
+| | Unfolding Step 2
+| | +--------------------------------+
+| | | 4.2.0 Running Parameters
+| | + - - - - - - - - - - - - - - - -+
+| | | Step Number     : 2
+| | | Bottom Fraction : 0.007
+| | | alpha           : 1.0
+| | | weight of DCA   : 1
+| | | weight of EpT   : 1
+| | | DCA File Name   : fakedata/pp/fakedata-dca.root
+| | | Number of
+| | |   Random Walkers: 750
+| | | Steps of
+| | |   Burn-in       : 400
+| | | Number of Steps : 2000
+| | +------------------------------+
+| | | 4.2.1 Definitions in Unfold():
+| | |        4.2.1.1 eptdata()
+| | |        4.2.1.2: histogram_to_array(histogram, option)
+| | |        4.2.1.3: dcadata(dca_ept_bin, filename)
+| | |        4.2.1.4: dcamatrix(dca_ept_bin)
+| | |        4.2.1.5: eptmatrix()
+| | |        4.2.1.6: genpt(bfrac)
+| | |        4.2.1.7: finite_difference_matrix(ndim)
+| | |        4.2.1.8: ln_gauss(x, mu, inv_cov_mtx)
+| | |        4.2.1.9: ln_poisson(x, mu -- uses scipy.special.gammaln())
+| | |        4.2.1.10: multi_variable_gauss(x, matrix_list_entry, data_list_entry)
+| | |        4.2.1.11: dca_shape(x, matrix_list, data_list)
+| | |        4.2.1.12: reg(x, x_prior, alpha, L)
+| | |        4.2.1.13: lppdf_ept_dca(x, mtxs, data, wt, prior, alpha, lim, reg-L)
+| | | 4.2.2 Global Parameters for use in Unfold()
+| | | 4.2.3 Output Directories
+| | | 4.2.4 Metropolis-Coupled Markov-Chain Monte Carlo
+| | |        4.2.4.1 MCMC initialization
+| | |        4.2.4.2 Initializing 750 34-dimensional random walkers.
+| | |        --> Result: Mean Acceptance Fraction = 0.000
+| | | 4.2.5 Refold
+| | |        4.2.5.1 ept_refold()
+| | | 4.2.6 Saving Data
+| |/
+| /
+|/
+| +------------------------------+
+| | Unfolding Step 3
+| | +--------------------------------+
+| | | 4.3.0 Running Parameters
+| | + - - - - - - - - - - - - - - - -+
+| | | Step Number     : 3
+| | | Bottom Fraction : 0.007
+| | | alpha           : 1.0
+| | | weight of DCA   : 1
+| | | weight of EpT   : 1
+| | | DCA File Name   : fakedata/pp/fakedata-dca.root
+| | | Number of
+| | |   Random Walkers: 750
+| | | Steps of
+| | |   Burn-in       : 400
+| | | Number of Steps : 2000
+| | +------------------------------+
+| | | 4.3.1 Definitions in Unfold():
+| | |        4.3.1.1 eptdata()
+| | |        4.3.1.2: histogram_to_array(histogram, option)
+| | |        4.3.1.3: dcadata(dca_ept_bin, filename)
+| | |        4.3.1.4: dcamatrix(dca_ept_bin)
+| | |        4.3.1.5: eptmatrix()
+| | |        4.3.1.6: genpt(bfrac)
+| | |        4.3.1.7: finite_difference_matrix(ndim)
+| | |        4.3.1.8: ln_gauss(x, mu, inv_cov_mtx)
+| | |        4.3.1.9: ln_poisson(x, mu -- uses scipy.special.gammaln())
+| | |        4.3.1.10: multi_variable_gauss(x, matrix_list_entry, data_list_entry)
+| | |        4.3.1.11: dca_shape(x, matrix_list, data_list)
+| | |        4.3.1.12: reg(x, x_prior, alpha, L)
+| | |        4.3.1.13: lppdf_ept_dca(x, mtxs, data, wt, prior, alpha, lim, reg-L)
+| | | 4.3.2 Global Parameters for use in Unfold()
+| | | 4.3.3 Output Directories
+| | | 4.3.4 Metropolis-Coupled Markov-Chain Monte Carlo
+| | |        4.3.4.1 MCMC initialization
+| | |        4.3.4.2 Initializing 750 34-dimensional random walkers.
+| | |        --> Result: Mean Acceptance Fraction = 0.000
+| | | 4.3.5 Refold
+| | |        4.3.5.1 ept_refold()
+| | | 4.3.6 Charm-Bottom Component Plot!
+| | | 4.3.7 Big Hadron Triangle Plot!
+| | | 4.3.8 Electron Triangle Plot!
+| | | 4.3.8 Saving Data as Intial Conditions for Step 4
+| |/
+| /
+|/
++------------------------------+
+| 5. Timing information
++ - - - - - - - - - - - - - - -+
+| Unfolding Steps:
+|    10.20 min
+|    11.78 min
+|    17.33 min
+|    12.47 min
+| Unfolding System: 51.79 min
+| Defintions: 11.92 µs
+| Imports: 1.13 s
+| TOTAL: 51.81 min
++------------------------------+
+~~~~~~~~~~~~~ END ~~~~~~~~~~~~~
