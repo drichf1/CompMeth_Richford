@@ -385,9 +385,7 @@ def unfold(step, # step in the iterations
     x0 = numpy.zeros((nwalkers,ndim))
     print("| | |        4.{}.3.2 Initializing {} {}-dimensional random walkers.".format(step,nwalkers,ndim))
     x0[:, c] = x_ini[c] * (1 + 0.1 * numpy.random.randn(nwalkers, ncpt)) #charm
-    x0[:, b] = x_ini[b] * (1 + 0.1 * numpy.random.randn(nwalkers, nbpt)) #bottom
-    if step < 1:
-        print("Error messages about invalid value in subtract() and greater().")
+    x0[:, b] = x_ini[b] * (1 + 0.1 * numpy.random.randn(nwalkers, nbpt)) #botto
 
     # 3.1.15.6:  make a sampler
     sampler = emcee.EnsembleSampler(nwalkers, ndim, function, args=args)
@@ -425,8 +423,6 @@ def unfold(step, # step in the iterations
         bfrac = bfold / hfold
         return cfold, bfold, hfold, bfrac
     ceptr, beptr, heptr, bfrac_ept = ept_refold(pq,eptmatrix)
-    if step < 1:
-        print("Error message about trouble with true-divide.") # becaues columns 2 and 3 of c,b,hfold are all 0.
 
     # 3.1.16.2 Jacobian
     J = numpy.zeros([nept,ndim])
