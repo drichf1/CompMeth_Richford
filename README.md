@@ -16,3 +16,11 @@ Homework 4
 -- Gravitational Pull of Uniform Sheet
 Homework 5
 -- Lagrange point between the Earth and the Moon
+Homework 6
+-- Planetary Orbits
+Homework 7
+-- Air Resistance
+Homework 8
+-- Brownian Motion
+Final Project
+-- Code (and 1 associated output/error file)
