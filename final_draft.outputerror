@@ -1,9 +1,5 @@
-/opt/local/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/emcee/ensemble.py:335: RuntimeWarning: invalid value encountered in subtract
-  lnpdiff = (self.dim - 1.) * np.log(zz) + newlnprob - lnprob0
-/opt/local/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/emcee/ensemble.py:336: RuntimeWarning: invalid value encountered in greater
-  accept = (lnpdiff > np.log(self._random.rand(len(lnpdiff))))
-final_draft.py:464: RuntimeWarning: invalid value encountered in true_divide
-  bfrac = bfold / hfold
+Eddie:dan @ ~/CompPhys/CompMeth_Richford
+[33] → pythonroot final_project_submission.py
 +--------------------------------+
 | This program is my submission  |
 | for A. Maller's Computational  |
@@ -47,30 +43,34 @@ final_draft.py:464: RuntimeWarning: invalid value encountered in true_divide
 | | |   Burn-in       : 400
 | | | Number of Steps : 2000
 | | +------------------------------+
-| | | 4.0.1 Definitions in Unfold():
-| | |        4.0.1.1 eptdata()
-| | |        4.0.1.2: histogram_to_array(histogram, option)
-| | |        4.0.1.3: dcadata(dca_ept_bin, filename)
-| | |        4.0.1.4: dcamatrix(dca_ept_bin)
-| | |        4.0.1.5: eptmatrix()
-| | |        4.0.1.6: genpt(bfrac)
-| | |        4.0.1.7: finite_difference_matrix(ndim)
-| | |        4.0.1.8: ln_gauss(x, mu, inv_cov_mtx)
-| | |        4.0.1.9: ln_poisson(x, mu -- uses scipy.special.gammaln())
-| | |        4.0.1.10: multi_variable_gauss(x, matrix_list_entry, data_list_entry)
-| | |        4.0.1.11: dca_shape(x, matrix_list, data_list)
-| | |        4.0.1.12: reg(x, x_prior, alpha, L)
-| | |        4.0.1.13: lppdf_ept_dca(x, mtxs, data, wt, prior, alpha, lim, reg-L)
 | | | 4.0.2 Global Parameters for use in Unfold()
 | | | 4.0.3 Output Directories
-| | | 4.0.4 Metropolis-Coupled Markov-Chain Monte Carlo
-| | |        4.0.4.1 MCMC initialization
-| | |        4.0.4.2 Initializing 750 34-dimensional random walkers.
-Error messages about invalid value in subtract() and greater().
+| | | 4.0.2 Definitions in Unfold():
+| | |        4.0.2.1 eptdata()
+| | |        4.0.2.2: histogram_to_array(histogram, option)
+| | |        4.0.2.3: dcadata(dca_ept_bin, filename)
+| | |        4.0.2.4: dcamatrix(dca_ept_bin)
+| | |        4.0.2.5: eptmatrix()
+| | |        4.0.2.6: genpt(bfrac)
+| | |        4.0.2.7: finite_difference_matrix(ndim)
+| | |        4.0.2.8: ln_gauss(x, mu, inv_cov_mtx)
+| | |        4.0.2.9: ln_poisson(x, mu -- uses scipy.special.gammaln())
+| | |        4.0.2.10: multi_variable_gauss(x, matrix_list_entry, data_list_entry)
+| | |        4.0.2.11: dca_shape(x, matrix_list, data_list)
+| | |        4.0.2.12: reg(x, x_prior, alpha, L)
+| | |        4.0.2.13: MCMC: lppdf_ept_dca(x, mtxs, data, wt, prior, alpha, lim, reg-L)
+| | | 4.0.3 Metropolis-Coupled Markov-Chain Monte Carlo
+| | |        4.0.3.1 MCMC initialization
+| | |        4.0.3.2 Initializing 750 34-dimensional random walkers.
+/opt/local/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/emcee/ensemble.py:335: RuntimeWarning: invalid value encountered in subtract
+  lnpdiff = (self.dim - 1.) * np.log(zz) + newlnprob - lnprob0
+/opt/local/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/emcee/ensemble.py:336: RuntimeWarning: invalid value encountered in greater
+  accept = (lnpdiff > np.log(self._random.rand(len(lnpdiff))))
 | | |        --> Result: Mean Acceptance Fraction = 0.000
-| | | 4.0.5 Refold
-| | |        4.0.5.1 ept_refold()
-Error message about trouble with true-divide.
+| | | 4.0.4 Refold
+| | |        4.0.4.1 ept_refold()
+final_project_submission.py:424: RuntimeWarning: invalid value encountered in true_divide
+  bfrac = bfold / hfold
 | | | 4.0.6 Saving Data
 | |/
 | /
@@ -92,28 +92,28 @@ Error message about trouble with true-divide.
 | | |   Burn-in       : 400
 | | | Number of Steps : 2000
 | | +------------------------------+
-| | | 4.1.1 Definitions in Unfold():
-| | |        4.1.1.1 eptdata()
-| | |        4.1.1.2: histogram_to_array(histogram, option)
-| | |        4.1.1.3: dcadata(dca_ept_bin, filename)
-| | |        4.1.1.4: dcamatrix(dca_ept_bin)
-| | |        4.1.1.5: eptmatrix()
-| | |        4.1.1.6: genpt(bfrac)
-| | |        4.1.1.7: finite_difference_matrix(ndim)
-| | |        4.1.1.8: ln_gauss(x, mu, inv_cov_mtx)
-| | |        4.1.1.9: ln_poisson(x, mu -- uses scipy.special.gammaln())
-| | |        4.1.1.10: multi_variable_gauss(x, matrix_list_entry, data_list_entry)
-| | |        4.1.1.11: dca_shape(x, matrix_list, data_list)
-| | |        4.1.1.12: reg(x, x_prior, alpha, L)
-| | |        4.1.1.13: lppdf_ept_dca(x, mtxs, data, wt, prior, alpha, lim, reg-L)
 | | | 4.1.2 Global Parameters for use in Unfold()
 | | | 4.1.3 Output Directories
-| | | 4.1.4 Metropolis-Coupled Markov-Chain Monte Carlo
-| | |        4.1.4.1 MCMC initialization
-| | |        4.1.4.2 Initializing 750 34-dimensional random walkers.
+| | | 4.1.2 Definitions in Unfold():
+| | |        4.1.2.1 eptdata()
+| | |        4.1.2.2: histogram_to_array(histogram, option)
+| | |        4.1.2.3: dcadata(dca_ept_bin, filename)
+| | |        4.1.2.4: dcamatrix(dca_ept_bin)
+| | |        4.1.2.5: eptmatrix()
+| | |        4.1.2.6: genpt(bfrac)
+| | |        4.1.2.7: finite_difference_matrix(ndim)
+| | |        4.1.2.8: ln_gauss(x, mu, inv_cov_mtx)
+| | |        4.1.2.9: ln_poisson(x, mu -- uses scipy.special.gammaln())
+| | |        4.1.2.10: multi_variable_gauss(x, matrix_list_entry, data_list_entry)
+| | |        4.1.2.11: dca_shape(x, matrix_list, data_list)
+| | |        4.1.2.12: reg(x, x_prior, alpha, L)
+| | |        4.1.2.13: MCMC: lppdf_ept_dca(x, mtxs, data, wt, prior, alpha, lim, reg-L)
+| | | 4.1.3 Metropolis-Coupled Markov-Chain Monte Carlo
+| | |        4.1.3.1 MCMC initialization
+| | |        4.1.3.2 Initializing 750 34-dimensional random walkers.
 | | |        --> Result: Mean Acceptance Fraction = 0.000
-| | | 4.1.5 Refold
-| | |        4.1.5.1 ept_refold()
+| | | 4.1.4 Refold
+| | |        4.1.4.1 ept_refold()
 | | | 4.1.6 Saving Data
 | |/
 | /
@@ -135,28 +135,28 @@ Error message about trouble with true-divide.
 | | |   Burn-in       : 400
 | | | Number of Steps : 2000
 | | +------------------------------+
-| | | 4.2.1 Definitions in Unfold():
-| | |        4.2.1.1 eptdata()
-| | |        4.2.1.2: histogram_to_array(histogram, option)
-| | |        4.2.1.3: dcadata(dca_ept_bin, filename)
-| | |        4.2.1.4: dcamatrix(dca_ept_bin)
-| | |        4.2.1.5: eptmatrix()
-| | |        4.2.1.6: genpt(bfrac)
-| | |        4.2.1.7: finite_difference_matrix(ndim)
-| | |        4.2.1.8: ln_gauss(x, mu, inv_cov_mtx)
-| | |        4.2.1.9: ln_poisson(x, mu -- uses scipy.special.gammaln())
-| | |        4.2.1.10: multi_variable_gauss(x, matrix_list_entry, data_list_entry)
-| | |        4.2.1.11: dca_shape(x, matrix_list, data_list)
-| | |        4.2.1.12: reg(x, x_prior, alpha, L)
-| | |        4.2.1.13: lppdf_ept_dca(x, mtxs, data, wt, prior, alpha, lim, reg-L)
 | | | 4.2.2 Global Parameters for use in Unfold()
 | | | 4.2.3 Output Directories
-| | | 4.2.4 Metropolis-Coupled Markov-Chain Monte Carlo
-| | |        4.2.4.1 MCMC initialization
-| | |        4.2.4.2 Initializing 750 34-dimensional random walkers.
+| | | 4.2.2 Definitions in Unfold():
+| | |        4.2.2.1 eptdata()
+| | |        4.2.2.2: histogram_to_array(histogram, option)
+| | |        4.2.2.3: dcadata(dca_ept_bin, filename)
+| | |        4.2.2.4: dcamatrix(dca_ept_bin)
+| | |        4.2.2.5: eptmatrix()
+| | |        4.2.2.6: genpt(bfrac)
+| | |        4.2.2.7: finite_difference_matrix(ndim)
+| | |        4.2.2.8: ln_gauss(x, mu, inv_cov_mtx)
+| | |        4.2.2.9: ln_poisson(x, mu -- uses scipy.special.gammaln())
+| | |        4.2.2.10: multi_variable_gauss(x, matrix_list_entry, data_list_entry)
+| | |        4.2.2.11: dca_shape(x, matrix_list, data_list)
+| | |        4.2.2.12: reg(x, x_prior, alpha, L)
+| | |        4.2.2.13: MCMC: lppdf_ept_dca(x, mtxs, data, wt, prior, alpha, lim, reg-L)
+| | | 4.2.3 Metropolis-Coupled Markov-Chain Monte Carlo
+| | |        4.2.3.1 MCMC initialization
+| | |        4.2.3.2 Initializing 750 34-dimensional random walkers.
 | | |        --> Result: Mean Acceptance Fraction = 0.000
-| | | 4.2.5 Refold
-| | |        4.2.5.1 ept_refold()
+| | | 4.2.4 Refold
+| | |        4.2.4.1 ept_refold()
 | | | 4.2.6 Saving Data
 | |/
 | /
@@ -178,30 +178,29 @@ Error message about trouble with true-divide.
 | | |   Burn-in       : 400
 | | | Number of Steps : 2000
 | | +------------------------------+
-| | | 4.3.1 Definitions in Unfold():
-| | |        4.3.1.1 eptdata()
-| | |        4.3.1.2: histogram_to_array(histogram, option)
-| | |        4.3.1.3: dcadata(dca_ept_bin, filename)
-| | |        4.3.1.4: dcamatrix(dca_ept_bin)
-| | |        4.3.1.5: eptmatrix()
-| | |        4.3.1.6: genpt(bfrac)
-| | |        4.3.1.7: finite_difference_matrix(ndim)
-| | |        4.3.1.8: ln_gauss(x, mu, inv_cov_mtx)
-| | |        4.3.1.9: ln_poisson(x, mu -- uses scipy.special.gammaln())
-| | |        4.3.1.10: multi_variable_gauss(x, matrix_list_entry, data_list_entry)
-| | |        4.3.1.11: dca_shape(x, matrix_list, data_list)
-| | |        4.3.1.12: reg(x, x_prior, alpha, L)
-| | |        4.3.1.13: lppdf_ept_dca(x, mtxs, data, wt, prior, alpha, lim, reg-L)
 | | | 4.3.2 Global Parameters for use in Unfold()
 | | | 4.3.3 Output Directories
-| | | 4.3.4 Metropolis-Coupled Markov-Chain Monte Carlo
-| | |        4.3.4.1 MCMC initialization
-| | |        4.3.4.2 Initializing 750 34-dimensional random walkers.
+| | | 4.3.2 Definitions in Unfold():
+| | |        4.3.2.1 eptdata()
+| | |        4.3.2.2: histogram_to_array(histogram, option)
+| | |        4.3.2.3: dcadata(dca_ept_bin, filename)
+| | |        4.3.2.4: dcamatrix(dca_ept_bin)
+| | |        4.3.2.5: eptmatrix()
+| | |        4.3.2.6: genpt(bfrac)
+| | |        4.3.2.7: finite_difference_matrix(ndim)
+| | |        4.3.2.8: ln_gauss(x, mu, inv_cov_mtx)
+| | |        4.3.2.9: ln_poisson(x, mu -- uses scipy.special.gammaln())
+| | |        4.3.2.10: multi_variable_gauss(x, matrix_list_entry, data_list_entry)
+| | |        4.3.2.11: dca_shape(x, matrix_list, data_list)
+| | |        4.3.2.12: reg(x, x_prior, alpha, L)
+| | |        4.3.2.13: MCMC: lppdf_ept_dca(x, mtxs, data, wt, prior, alpha, lim, reg-L)
+| | | 4.3.3 Metropolis-Coupled Markov-Chain Monte Carlo
+| | |        4.3.3.1 MCMC initialization
+| | |        4.3.3.2 Initializing 750 34-dimensional random walkers.
 | | |        --> Result: Mean Acceptance Fraction = 0.000
-| | | 4.3.5 Refold
-| | |        4.3.5.1 ept_refold()
+| | | 4.3.4 Refold
+| | |        4.3.4.1 ept_refold()
 | | | 4.3.6 Charm-Bottom Component Plot!
-| | | 4.3.7 Big Hadron Triangle Plot!
 | | | 4.3.8 Electron Triangle Plot!
 | | | 4.3.8 Saving Data as Intial Conditions for Step 4
 | |/
@@ -211,13 +210,13 @@ Error message about trouble with true-divide.
 | 5. Timing information
 + - - - - - - - - - - - - - - -+
 | Unfolding Steps:
-|    10.20 min
-|    11.78 min
-|    17.33 min
-|    12.47 min
-| Unfolding System: 51.79 min
-| Defintions: 11.92 µs
-| Imports: 1.13 s
-| TOTAL: 51.81 min
+|    12.30 min
+|    15.25 min
+|    16.46 min
+|    14.44 min
+| Unfolding System: 58.45 min
+| Defintions: 43.87 µs
+| Imports: 1.10 s
+| TOTAL: 58.47 min
 +------------------------------+
 ~~~~~~~~~~~~~ END ~~~~~~~~~~~~~
